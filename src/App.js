@@ -6,22 +6,23 @@ import axios from 'axios';
 import './App.css';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
-import Post from './components/Post';
-import PostForm from './components/PostForm';
-import PostList from './components/PostList';
+import Product from './components/Product';
+import ProductList from './components/ProductList';
+import AddProduct from './components/AddProduct';
+import AddProductImage from './components/AddProductImage';
 
 class App extends React.Component {
   state = {
-    posts: [],
+    products: [],
     err: {},
   };
 
   componentDidMount() {
     axios
-      .get('https://jsonplaceholder.typicode.com/posts/')
+      .get('http://localhost:4000/api/product/product-list')
       .then((response) => {
         this.setState({
-          posts: response.data,
+          products: response.data.message,
         });
       })
       .catch((err) => this.setState({ err }));
@@ -32,14 +33,16 @@ class App extends React.Component {
       <div>
         <Navigation />
         <Route path="/" exact component={Home} />
+        <Route path="/product/:id" component={ProductList} />
         <Route
-          path="/posts"
+          path="/product"
+          exact
           render={(routerProps) => (
-            <Post {...routerProps} posts={this.state.posts} />
+            <Product {...routerProps} products={this.state.products} />
           )}
         />
-        <Route path="/create/post" component={PostForm} />
-        <Route path="/post/:id" component={PostList} />
+        <Route path="/add/product" component={AddProduct} />
+        <Route path="/:id/add/image" component={AddProductImage} />
       </div>
     );
   }

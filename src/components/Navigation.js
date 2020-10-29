@@ -16,13 +16,13 @@ export default function Navigation() {
               </Link>
             </Nav>
             <Nav>
-              <Link className="nav-link" to="/posts">
-                Posts
+              <Link className="nav-link" to="/product">
+                Products
               </Link>
             </Nav>
             <Nav>
-              <Link className="nav-link" to="/create/post">
-                Create Posts
+              <Link className="nav-link" to="/add/product">
+                New Product
               </Link>
             </Nav>
           </Nav>

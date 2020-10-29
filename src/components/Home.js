@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Jumbotron } from 'react-bootstrap';
 import Color from '../hoc/Color';
 import '../App.css';
@@ -16,9 +17,9 @@ function Home() {
           iure veniam porro dolores esse eaque sunt libero praesentium magni
           exercitationem! Iusto, autem. Dignissimos aut ducimus natus.
         </p>
-        <a href="#" className="btn btn-success">
+        <Link to="#" className="btn btn-success">
           read more
-        </a>
+        </Link>
       </Jumbotron>
     </div>
   );
