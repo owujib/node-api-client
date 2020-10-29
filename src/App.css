@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.orange-text {
+  color: orange;
+}
+.red-text {
+  color: red;
+}
+.green-text {
+  color: green;
+}
+.yellow-text {
+  color: yellow;
+}
+.blue-text {
+  color: blue;
+}
+.pink-text {
+  color: pink;
+}

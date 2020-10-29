@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route } from 'react-router-dom';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Navigation from './components/Navigation';
+import Home from './components/Home';
+import Post from './components/Post';
+import PostForm from './components/PostForm';
+import PostList from './components/PostList';
+
+class App extends React.Component {
+  state = {
+    posts: [],
+    err: {},
+  };
+
+  componentDidMount() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/posts/')
+      .then((response) => {
+        this.setState({
+          posts: response.data,
+        });
+      })
+      .catch((err) => this.setState({ err }));
+  }
+
+  render() {
+    return (
+      <div>
+        <Navigation />
+        <Route path="/" exact component={Home} />
+        <Route
+          path="/posts"
+          render={(routerProps) => (
+            <Post {...routerProps} posts={this.state.posts} />
+          )}
+        />
+        <Route path="/create/post" component={PostForm} />
+        <Route path="/post/:id" component={PostList} />
+      </div>
+    );
+  }
 }
 
 export default App;
